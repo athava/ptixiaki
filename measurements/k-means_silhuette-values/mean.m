@@ -37,18 +37,13 @@ for i = 1:1:7
 end
 
 
-[idx_mean,C_mean] = kmeans(mean_values,4);
-[idx_median,C_median] = kmeans(median_values,4);
-[idx_rms,C_rms] = kmeans(rms_values,4);
-[idx_std,C_std] = kmeans(std_values,4);
-
 for i = 1:1:10
-    [idx_mean_median{i},C_mean_median{i}] = kmeans(idx_mean,i);
+    [idx_mean{i+1},C_mean{i+1}] = kmeans(mean_values,i);
 end
 
 for i = 1:1:10
     figure;
-    silhouette(values1,idx_mean_median{i});
+    silhouette(mean_values,idx_mean{i+1});
 end
 
 
