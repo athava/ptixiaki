@@ -210,7 +210,17 @@ for i = 1:3:21
     k=k+1;
 end
 
-[idx_mean_std_median,C_mean_std_median] = kmeans(values3,8); 
+
+for i = 1:1:10
+    [idx_values3fea(:,i),C_values3fea{i}] = kmeans(values3,i);
+end
+
+
+eva3 = evalclusters(values4,idx_values4fea,'silhouette');
+
+
+
+
   
 %%
 k=1;
@@ -257,49 +267,14 @@ for i = 1:4:28
     k=k+1;
 end
 
-[idx_4_features,C_4_features] = kmeans(values4,4);
+for i = 1:1:10
+    [idx_values4fea(:,i),C_values4fea{i}] = kmeans(values4,i);
+end
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+for i = 1:1:10
+    figure;
+    silhouette(values4,idx_values4fea(:,i));
+end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+eva4 = evalclusters(values4,idx_values4fea,'silhouette');

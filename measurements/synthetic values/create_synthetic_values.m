@@ -1,10 +1,3 @@
-
-
-%a = 50;
-%b = 100;
-%r = (b-a).*rand(1000,1) + a;
-
-%% create synthetic values 
 rng(0,'twister');
 
 for j = 1:1:9
@@ -14,68 +7,229 @@ for j = 1:1:9
    left_synthetic_values(:,j) = [100-76].*rand(1000,1) +76;
 end
 
-%% mean, median, rms, std extract
+%% 1-feature mean, median, rms, std extract
 
-for j = 1:1:9
-    mean_values(1,j) = mean(up_synthetic_values(j,:));
-    median_values(1,j) = median(up_synthetic_values(j,:));
-    rms_values(1,j) = rms(up_synthetic_values(j,:));
-    std_values(1,j) = std(up_synthetic_values(j,:));
-    
-    mean_values(2,j) = mean(down_synthetic_values(j,:));
-    median_values(2,j) = median(down_synthetic_values(j,:));
-    rms_values(2,j) = rms(down_synthetic_values(j,:));
-    std_values(2,j) = std(down_synthetic_values(j,:));
-    
-    mean_values(3,j) = mean(right_synthetic_values(j,:));
-    median_values(3,j) = median(right_synthetic_values(j,:));
-    rms_values(3,j) = rms(right_synthetic_values(j,:));
-    std_values(3,j) = std(right_synthetic_values(j,:));
-    
-    mean_values(4,j) = mean(left_synthetic_values(j,:));
-    median_values(4,j) = median(left_synthetic_values(j,:));
-    rms_values(4,j) = rms(left_synthetic_values(j,:));
-    std_values(4,j) = std(left_synthetic_values(j,:));
-end
 
-%%
 
 for i = 1:1:10
     for j = 1:1:9
-        a= uint32((i*100) - 100);
-        b =i*100;
-        mean_values(i,j) = mean(up_synthetic_values([a:100],j));
+        mean_values(i,j) = mean(up_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        mean_values(i+10,j) = mean(down_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        mean_values(i+20,j) = mean(right_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        mean_values(i+30,j) = mean(left_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        
+        median_values(i,j) = median(up_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        median_values(i+10,j) = median(down_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        median_values(i+20,j) = median(right_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        median_values(i+30,j) = median(left_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        
+        min_values(i,j) = min(up_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        min_values(i+10,j) = min(down_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        min_values(i+20,j) = min(right_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        min_values(i+30,j) = min(left_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        
+        rms_values(i,j) = rms(up_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        rms_values(i+10,j) = rms(down_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        rms_values(i+20,j) = rms(right_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        rms_values(i+30,j) = rms(left_synthetic_values([(((i*100) - 100)+1):(i*100)],j));
+        
     end
 end
-
-for i = 1:100:1000
-    for j = 1:1:9
-        mean_values(i+10,j) = mean(down{i,j});
-    end
-end
-
-
-for i = 1:100:1000
-    for j = 1:1:9
-        mean_values(i+20,j) = mean(left{i,j});
-    end
-end
-
-
-for i = 1:100:1000
-    for j = 1:1:9
-        mean_values(i+30,j) = mean(right{i,j});
-    end
-end
-
-%% cluster synthetic values%%%%%
 
 for i = 1:1:10
-    [idx_synthetic(:,i),C_synthetic{i}] = kmeans(mean_values,i);
+    [idx_synthetic_mean(:,i),C_synthetic_mean{i}] = kmeans(mean_values,i);
+    [idx_synthetic_median(:,i),C_synthetic_median{i}] = kmeans(median_values,i);
+    [idx_synthetic_min(:,i),C_synthetic_min{i}] = kmeans(min_values,i);
+    [idx_synthetic_rms(:,i),C_synthetic_rms{i}] = kmeans(rms_values,i);
 end
+
+%clearvars idx_synthetic_mean;
+%clearvars C_synthetic_mean;
 
 for i = 1:1:10
     figure;
-    silhouette(mean_values,idx_synthetic(:,i));
+    %silhouette(mean_values,idx_synthetic_mean(:,i));
+    %silhouette(median_values,idx_synthetic_median(:,i));
+    silhouette(min_values,idx_synthetic_min(:,i));
+    %silhouette(rms_values,idx_synthetic_rms(:,i));
 end
+
+
+%% 4-features clustering /silhouette values mean/median/min/rms
+
+k=1;
+for i = 1:4:40
+    for j = 1:1:9
+        values4fea(i,j) = mean(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+1,j) = median(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+2,j) = min(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+3,j) = rms(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        
+        values4fea(i+40,j) = mean(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+41,j) = median(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+42,j) = min(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+43,j) = rms(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        
+        
+        values4fea(i+80,j) = mean(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+81,j) = median(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+82,j) = min(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+83,j) = rms(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        
+        
+        values4fea(i+120,j) = mean(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+121,j) = median(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+122,j) = min(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values4fea(i+123,j) = rms(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+
+    end
+    k=k+1;
+end
+
+for i = 1:1:10
+    [idx_synthetic_values4fea(:,i),C_synthetic_values4fea{i}] = kmeans(values4fea,i);
+end
+
+% for i = 1:1:10
+%     figure;
+%     silhouette(values4fea,idx_synthetic_values4fea(:,i));
+% end
+
+eva_4feat = evalclusters(values4fea,idx_synthetic_values4fea,'silhouette');
+
+%%
+clearvars idx_synthetic_values4fea;
+clearvars values4fea;
+
+%% 3-features clustering /silhouette values median/min/rms
+
+
+k=1;
+for i = 1:3:30
+    for j = 1:1:9
+        values3fea(i,j) = median(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+1,j) = rms(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+2,j) = min(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));        
+        
+        values3fea(i+30,j) = median(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+31,j) = rms(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+32,j) = min(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));       
+        
+        values3fea(i+60,j) = median(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+61,j) = rms(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+62,j) = min(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        
+        values3fea(i+90,j) = median(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+91,j) = rms(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+92,j) = min(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+    end
+    k=k+1;
+end
+
+for i = 1:1:10
+    [idx_synthetic_values3fea(:,i),C_synthetic_values3fea{i}] = kmeans(values3fea,i);
+end
+% 
+% for i = 1:1:10
+%     figure;
+%     silhouette(values3fea,idx_synthetic_values3fea(:,i));
+% end
+
+eva_median_min_rms = evalclusters(values3fea,idx_synthetic_values3fea,'silhouette');
+%%
+clearvars idx_synthetic_values3fea;
+clearvars values3fea;
+
+%% 3-features clustering /silhouette values mean/rms/min
+
+
+k=1;
+for i = 1:3:30
+    for j = 1:1:9
+        values3fea(i,j) = rms(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+1,j) = mean(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+2,j) = min(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));        
+        
+        values3fea(i+30,j) = rms(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+31,j) = mean(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+32,j) = min(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));       
+        
+        values3fea(i+60,j) = rms(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+61,j) = mean(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+62,j) = min(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        
+        values3fea(i+90,j) = rms(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+91,j) = mean(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+92,j) = min(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+    end
+    k=k+1;
+end
+
+for i = 1:1:10
+    [idx_synthetic_values3fea(:,i),C_synthetic_values3fea{i}] = kmeans(values3fea,i);
+end
+
+% for i = 1:1:10
+%     figure;
+%     silhouette(values3fea,idx_synthetic_values3fea(:,i));
+% end
+
+eva_mean_rms_min = evalclusters(values3fea,idx_synthetic_values3fea,'silhouette');
+%%
+clearvars idx_synthetic_values3fea;
+clearvars values3fea;
+
+%% 3-features clustering /silhouette values mean/median/min
+
+
+k=1;
+for i = 1:3:30
+    for j = 1:1:9
+        values3fea(i,j) = median(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+1,j) = mean(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+2,j) = min(up_synthetic_values([(((k*100) - 100)+1):(k*100)],j));        
+        
+        values3fea(i+30,j) = median(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+31,j) = mean(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+32,j) = min(down_synthetic_values([(((k*100) - 100)+1):(k*100)],j));       
+        
+        values3fea(i+60,j) = median(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+61,j) = mean(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+62,j) = min(right_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        
+        values3fea(i+90,j) = median(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+91,j) = mean(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+        values3fea(i+92,j) = min(left_synthetic_values([(((k*100) - 100)+1):(k*100)],j));
+    end
+    k=k+1;
+end
+
+for i = 1:1:10
+    [idx_synthetic_values3fea(:,i),C_synthetic_values3fea{i}] = kmeans(values3fea,i);
+end
+% 
+% for i = 1:1:10
+%     figure;
+%      silhouette(values3fea,idx_synthetic_values3fea(:,i));
+% end
+
+eva_median_mean_min = evalclusters(values3fea,idx_synthetic_values3fea,'silhouette');
+
+%%
+clearvars idx_synthetic_values3fea;
+clearvars values3fea;
+
+%%
+
+
+
+
+
+
+
+
+
+
+
+
 
