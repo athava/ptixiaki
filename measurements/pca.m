@@ -1,1 +1,0 @@
-[COEFF,SCORE] = princomp(down{1:9});

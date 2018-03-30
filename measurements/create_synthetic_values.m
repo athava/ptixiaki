@@ -45,6 +45,8 @@ end
 
 %clearvars idx_synthetic_mean;
 %clearvars C_synthetic_mean;
+eva_4feat = evalclusters(mean_values,idx_synthetic_mean,'silhouette');
+
 
 for i = 1:1:10
     figure;
