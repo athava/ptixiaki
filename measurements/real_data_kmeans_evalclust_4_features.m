@@ -55,15 +55,15 @@ for i = 1:4:28
         values4fea(i+30,j) = std(down{k,j});
         values4fea(i+31,j) = rms(down{k,j});
            
-        values4fea(i+56,j) = mean(right{k,j});
-        values4fea(i+57,j) = median(right{k,j});
-        values4fea(i+58,j) = std(right{k,j});
-        values4fea(i+59,j) = rms(right{k,j});
+        values4fea(i+56,j) = mean(left{k,j});
+        values4fea(i+57,j) = median(left{k,j});
+        values4fea(i+58,j) = std(left{k,j});
+        values4fea(i+59,j) = rms(left{k,j});
       
-        values4fea(i+84,j) = mean(left{k,j});
-        values4fea(i+85,j) = median(left{k,j});
-        values4fea(i+86,j) = std(left{k,j});
-        values4fea(i+87,j) = rms(left{k,j});
+        values4fea(i+84,j) = mean(right{k,j});
+        values4fea(i+85,j) = median(right{k,j});
+        values4fea(i+86,j) = std(right{k,j});
+        values4fea(i+87,j) = rms(right{k,j});
 
     end
     k=k+1;
@@ -98,19 +98,19 @@ for i = 1:1:7
         rms_val(i+7,j) = rms(down{k,j});
         
         
-        mean_val(i+14,j) = mean(right{k,j});
-        median_val(i+14,j) = median(right{k,j});
-        min_val(i+14,j) = min(right{k,j});
-        rms_val(i+14,j) = rms(right{k,j});
+        mean_val(i+14,j) = mean(left{k,j});
+        median_val(i+14,j) = median(left{k,j});
+        min_val(i+14,j) = min(left{k,j});
+        rms_val(i+14,j) = rms(left{k,j});
         
         
-        mean_val(i+21,j) = mean(left{k,j});
-        median_val(i+21,j) = median(left{k,j});
-        min_val(i+21,j) = min(left{k,j});
-        rms_val(i+21,j) = rms(left{k,j});
+        mean_val(i+21,j) = mean(right{k,j});
+        median_val(i+21,j) = median(right{k,j});
+        min_val(i+21,j) = min(right{k,j});
+        rms_val(i+21,j) = rms(right{k,j});
 
     end
-    k=k+1;
+    k=k+1; 
 end
 
 lasso_data=[mean_val median_val min_val rms_val ];
