@@ -41,5 +41,4 @@ for k = 1:40
     end   
 end
 
-newdata =newdata';
-newdata =newdata';
+clearvars allFiles ans emptycell fid i k mydata n numfiles param;
