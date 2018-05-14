@@ -1,101 +1,3 @@
-%% mean/median/std/rms
-  
-% 
-% for i=1:1:7
-%    for j=1:1:9
-%         values4fea(i,j) = mean(up{i,j});
-%         values4fea(i,j+9) = median(up{i,j});
-%         values4fea(i,j+18) = std(up{i,j});
-%         values4fea(i,j+27) = rms(up{i,j});
-%    end
-% end
-% 
-% k=1;
-% for i=8:1:14
-%    for j=1:1:9
-%         values4fea(i,j) = mean(down{k,j});
-%         values4fea(i,j+9) = median(down{k,j});
-%         values4fea(i,j+18) = std(down{k,j});
-%         values4fea(i,j+27) = rms(down{k,j});
-%    end
-%    k = k+1;
-% end
-% 
-% 
-% k=1;
-% for i=15:1:21
-%    for j=1:1:9
-%         values4fea(i,j) = mean(right{k,j});
-%         values4fea(i,j+9) = median(right{k,j});
-%         values4fea(i,j+18) = std(right{k,j});
-%         values4fea(i,j+27) = rms(right{k,j});
-%    end
-%    k = k+1;
-% end
-% 
-% k=1;
-% for i=22:1:28
-%    for j=1:1:9
-%         values4fea(i,j) = mean(left{k,j});
-%         values4fea(i,j+9) = median(left{k,j});
-%         values4fea(i,j+18) = std(left{k,j});
-%         values4fea(i,j+27) = rms(left{k,j});
-%    end
-%    k = k+1;
-% end
-% 
-% 
-%  [a_idx_values4fea,C_values4fea] = kmeans(values4fea,4);
-
-
- %% mean/median/rms/std
-% 
-% for i=1:1:7
-%    for j=1:1:9
-%         values4fea(i,j) = mean(up{i,j});
-%         values4fea(i,j+9) = median(up{i,j});
-%         values4fea(i,j+18) = rms(up{i,j});
-%         values4fea(i,j+27) = std(up{i,j});
-%    end
-% end
-% 
-% k=1;
-% for i=8:1:14
-%    for j=1:1:9
-%         values4fea(i,j) = mean(down{k,j});
-%         values4fea(i,j+9) = median(down{k,j});
-%         values4fea(i,j+18) = rms(down{k,j});
-%         values4fea(i,j+27) = std(down{k,j});
-%    end
-%    k = k+1;
-% end
-% 
-% 
-% k=1;
-% for i=15:1:21
-%    for j=1:1:9
-%         values4fea(i,j) = mean(right{k,j});
-%         values4fea(i,j+9) = median(right{k,j});
-%         values4fea(i,j+18) = rms(right{k,j});
-%         values4fea(i,j+27) = std(right{k,j});
-%    end
-%    k = k+1;
-% end
-% 
-% k=1;
-% for i=22:1:28
-%    for j=1:1:9
-%         values4fea(i,j) = mean(left{k,j});
-%         values4fea(i,j+9) = median(left{k,j});
-%         values4fea(i,j+18) = rms(left{k,j});
-%         values4fea(i,j+27) = std(left{k,j});
-%    end
-%    k = k+1;
-% end
-% 
-% 
-%  [b_idx_values4fea,C_values4fea] = kmeans(values4fea,4);
-% 
 
  %% mean/rms/std/median
  %%% the fucking more extra bestest 
@@ -294,6 +196,104 @@ end
 % 
 %  [e_idx_values4fea,C_values4fea] = kmeans(values4fea,4);
 
+%% mean/median/std/rms
+  
+% 
+% for i=1:1:7
+%    for j=1:1:9
+%         values4fea(i,j) = mean(up{i,j});
+%         values4fea(i,j+9) = median(up{i,j});
+%         values4fea(i,j+18) = std(up{i,j});
+%         values4fea(i,j+27) = rms(up{i,j});
+%    end
+% end
+% 
+% k=1;
+% for i=8:1:14
+%    for j=1:1:9
+%         values4fea(i,j) = mean(down{k,j});
+%         values4fea(i,j+9) = median(down{k,j});
+%         values4fea(i,j+18) = std(down{k,j});
+%         values4fea(i,j+27) = rms(down{k,j});
+%    end
+%    k = k+1;
+% end
+% 
+% 
+% k=1;
+% for i=15:1:21
+%    for j=1:1:9
+%         values4fea(i,j) = mean(right{k,j});
+%         values4fea(i,j+9) = median(right{k,j});
+%         values4fea(i,j+18) = std(right{k,j});
+%         values4fea(i,j+27) = rms(right{k,j});
+%    end
+%    k = k+1;
+% end
+% 
+% k=1;
+% for i=22:1:28
+%    for j=1:1:9
+%         values4fea(i,j) = mean(left{k,j});
+%         values4fea(i,j+9) = median(left{k,j});
+%         values4fea(i,j+18) = std(left{k,j});
+%         values4fea(i,j+27) = rms(left{k,j});
+%    end
+%    k = k+1;
+% end
+% 
+% 
+%  [a_idx_values4fea,C_values4fea] = kmeans(values4fea,4);
+
+
+ %% mean/median/rms/std
+% 
+% for i=1:1:7
+%    for j=1:1:9
+%         values4fea(i,j) = mean(up{i,j});
+%         values4fea(i,j+9) = median(up{i,j});
+%         values4fea(i,j+18) = rms(up{i,j});
+%         values4fea(i,j+27) = std(up{i,j});
+%    end
+% end
+% 
+% k=1;
+% for i=8:1:14
+%    for j=1:1:9
+%         values4fea(i,j) = mean(down{k,j});
+%         values4fea(i,j+9) = median(down{k,j});
+%         values4fea(i,j+18) = rms(down{k,j});
+%         values4fea(i,j+27) = std(down{k,j});
+%    end
+%    k = k+1;
+% end
+% 
+% 
+% k=1;
+% for i=15:1:21
+%    for j=1:1:9
+%         values4fea(i,j) = mean(right{k,j});
+%         values4fea(i,j+9) = median(right{k,j});
+%         values4fea(i,j+18) = rms(right{k,j});
+%         values4fea(i,j+27) = std(right{k,j});
+%    end
+%    k = k+1;
+% end
+% 
+% k=1;
+% for i=22:1:28
+%    for j=1:1:9
+%         values4fea(i,j) = mean(left{k,j});
+%         values4fea(i,j+9) = median(left{k,j});
+%         values4fea(i,j+18) = rms(left{k,j});
+%         values4fea(i,j+27) = std(left{k,j});
+%    end
+%    k = k+1;
+% end
+% 
+% 
+%  [b_idx_values4fea,C_values4fea] = kmeans(values4fea,4);
+% 
 
 
 
