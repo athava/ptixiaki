@@ -316,7 +316,8 @@ end
 
 
  [tr_idx,C_train_set] = kmeans(train_set,4, 'Replicates',45, 'Distance','cityblock');
- eval_train = evalclusters(train_set,tr_idx,'silhouette');
+ eval_train = evalclusters(train_set,tr_idx,'silhouette', 'Distance','cityblock');
+
 
 %%%for testing set 
 

@@ -1,4 +1,4 @@
-%%
+ %%
 clear;
 
 train_params = [6 9 7 4 5 3 8];
