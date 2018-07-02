@@ -1,3 +1,5 @@
+% orientation UP-DOWN-LEFT-RIGHT
+
 allFiles = dir('raw_data\up\*.dat'); 
 numfiles = length(allFiles);
 mydata = cell(1, numfiles);
@@ -195,3 +197,8 @@ clearvars allFiles ans emptycell fid i k mydata n numfiles param;
 raw_data(31:40,1) = newdata.';
 %raw_data_right(:,1) = newdata.';
 clearvars newdata k test_params train_params
+
+
+%transpose matrix 
+raw_data = raw_data.';
+

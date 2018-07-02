@@ -32,7 +32,7 @@ clearvars i j k ;
 
 
 c = cvpartition(10,'kfold',5 )
-Indices = crossvalind('Kfold', featured_data_down(:,1), 10 )
+Indices = crossvalind('Kfold', 10, )
 
 idx = training(c,2)
 
