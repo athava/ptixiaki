@@ -28,16 +28,16 @@ end
 
 clearvars i j k ;
 
-%% k folding
-
-
-c = cvpartition(10,'kfold',5 )
-Indices = crossvalind('Kfold', featured_data_down(:,1), 10 )
-
-idx = training(c,2)
-
-%aaa= crossvalind('Kfold', featured_data_down, 9);
-%Indices = crossvalind('Kfold', N, K)
+% %% k folding
+% 
+% 
+% c = cvpartition(10,'kfold',5 )
+% Indices = crossvalind('Kfold', featured_data_down(:,1), 10 )
+% 
+% idx = training(c,2)
+% 
+% %aaa= crossvalind('Kfold', featured_data_down, 9);
+% %Indices = crossvalind('Kfold', N, K)
 
 
 
