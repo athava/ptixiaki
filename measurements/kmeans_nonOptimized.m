@@ -20,13 +20,29 @@ eval_train = evalclusters(trainset,tr_idx,'silhouette','Distance','cityblock');
  
 train_labels = ['up' {C_train_set(1,:)}; 'down' {C_train_set(2,:)}; 'left' {C_train_set(3,:)}; 'right' {C_train_set(4,:)}];
 
-if(tr_idx(1,1) == 1)
+%label up cluster
+%se poio arithmo sigkentronontai ta perisotera apo thn up kinisi 
+l1=0; l2=0; l3=0; l4=0;
+for i=1:1:7 
+    if(tr_idx(i,1) == 1)
+        l1=l1+1;
+    elseif (tr_idx(i,1) == 2)
+        l2=l2+1;
+    elseif(tr_idx(i,1) == 3)
+        l3=l3+1;
+    else
+        l4=l4+1;
+    end
+end
+
+%onomazw up to sigkekrimeno centroid
+if(l1 == max([l1,l2,l3,l4]))
    train_labels{1,1}='up';
    train_labels(1,2) = {C_train_set(1,:)};  
-elseif (tr_idx(1,1) == 2)
+elseif (l2 == max([l1,l2,l3,l4]))
     train_labels{1,1}='up';
     train_labels(1,2) = {C_train_set(2,:)};
-elseif(tr_idx(1,1) == 3)
+elseif(l3 == max([l1,l2,l3,l4]))
    train_labels{1,1}='up';
     train_labels(1,2) = {C_train_set(3,:)}; 
 else
@@ -34,14 +50,27 @@ else
     train_labels(1,2) = {C_train_set(4,:)};
 end
 
+%label down cluster
+l1=0; l2=0; l3=0; l4=0;
+for i=8:1:14 
+    if(tr_idx(i,1) == 1)
+        l1=l1+1;
+    elseif (tr_idx(i,1) == 2)
+        l2=l2+1;
+    elseif(tr_idx(i,1) == 3)
+        l3=l3+1;
+    else
+        l4=l4+1;
+    end
+end
 
-if(tr_idx(8,1) == 1)
+if(l1 == max([l1,l2,l3,l4]))
    train_labels{2,1}='down';
    train_labels(2,2) = {C_train_set(1,:)};  
-elseif (tr_idx(8,1) == 2)
+elseif (l2 == max([l1,l2,l3,l4]))
     train_labels{2,1}='down';
     train_labels(2,2) = {C_train_set(2,:)};
-elseif(tr_idx(8,1) == 3)
+elseif(l3 == max([l1,l2,l3,l4]))
     train_labels{2,1}='down';
     train_labels(2,2) = {C_train_set(3,:)}; 
 else
@@ -49,13 +78,27 @@ else
     train_labels(2,2) = {C_train_set(4,:)};
 end
 
-if(tr_idx(15,1) == 1)
+%label left cluster
+l1=0; l2=0; l3=0; l4=0;
+for i=15:1:21 
+    if(tr_idx(i,1) == 1)
+        l1=l1+1;
+    elseif (tr_idx(i,1) == 2)
+        l2=l2+1;
+    elseif(tr_idx(i,1) == 3)
+        l3=l3+1;
+    else
+        l4=l4+1;
+    end
+end
+
+if(l1 == max([l1,l2,l3,l4]))
    train_labels{3,1}='left';
    train_labels(3,2) = {C_train_set(1,:)};  
-elseif (tr_idx(15,1) == 2)
+elseif (l2 == max([l1,l2,l3,l4]))
     train_labels{3,1}='left';
     train_labels(3,2) = {C_train_set(2,:)};
-elseif(tr_idx(15,1) == 3)
+elseif(l3 == max([l1,l2,l3,l4]))
     train_labels{3,1}='left';
     train_labels(3,2) = {C_train_set(3,:)}; 
 else
@@ -63,13 +106,27 @@ else
     train_labels(3,2) = {C_train_set(4,:)};
 end
 
-if(tr_idx(22,1) == 1)
+%label left cluster
+l1=0; l2=0; l3=0; l4=0;
+for i=22:1:28
+    if(tr_idx(i,1) == 1)
+        l1=l1+1;
+    elseif (tr_idx(i,1) == 2)
+        l2=l2+1;
+    elseif(tr_idx(i,1) == 3)
+        l3=l3+1;
+    else
+        l4=l4+1;
+    end
+end
+
+if(l1 == max([l1,l2,l3,l4]))
    train_labels{4,1}='right';
    train_labels(4,2) = {C_train_set(1,:)};  
-elseif (tr_idx(22,1) == 2)
+elseif(l2 == max([l1,l2,l3,l4]))
     train_labels{4,1}='right';
     train_labels(4,2) = {C_train_set(2,:)};
-elseif(tr_idx(22,1) == 3)
+elseif(l3 == max([l1,l2,l3,l4]))
     train_labels{4,1}='right';
     train_labels(4,2) = {C_train_set(3,:)}; 
 else
