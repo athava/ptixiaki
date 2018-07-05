@@ -1,27 +1,27 @@
 % features we use mean-rms-std-median
 
 k = 1;
-for i=1:1:10
+for i=1:1:(length(raw_data)/4)
    for j=1:1:9
         featured_data_up(i,j) = mean(raw_data{1,k}{1,j});
         featured_data_up(i,j+9) = rms(raw_data{1,k}{1,j});
         featured_data_up(i,j+18) = std(raw_data{1,k}{1,j});
         featured_data_up(i,j+27) = median(raw_data{1,k}{1,j});
         
-        featured_data_down(i,j) = mean(raw_data{1,k+10}{1,j});
-        featured_data_down(i,j+9) = rms(raw_data{1,k+10}{1,j});
-        featured_data_down(i,j+18) = std(raw_data{1,k+10}{1,j});
-        featured_data_down(i,j+27) = median(raw_data{1,k+10}{1,j});
+        featured_data_down(i,j) = mean(raw_data{1,k+((length(raw_data)/4)*1)}{1,j});
+        featured_data_down(i,j+9) = rms(raw_data{1,k+((length(raw_data)/4)*1)}{1,j});
+        featured_data_down(i,j+18) = std(raw_data{1,k+((length(raw_data)/4)*1)}{1,j});
+        featured_data_down(i,j+27) = median(raw_data{1,k+((length(raw_data)/4)*1)}{1,j});
         
-        featured_data_left(i,j) = mean(raw_data{1,k+20}{1,j});
-        featured_data_left(i,j+9) = rms(raw_data{1,k+20}{1,j});
-        featured_data_left(i,j+18) = std(raw_data{1,k+20}{1,j});
-        featured_data_left(i,j+27) = median(raw_data{1,k}{1,j});
+        featured_data_left(i,j) = mean(raw_data{1,k+((length(raw_data)/4)*2)}{1,j});
+        featured_data_left(i,j+9) = rms(raw_data{1,k+((length(raw_data)/4)*2)}{1,j});
+        featured_data_left(i,j+18) = std(raw_data{1,k+((length(raw_data)/4)*2)}{1,j});
+        featured_data_left(i,j+27) = median(raw_data{1,k+((length(raw_data)/4)*2)}{1,j});
         
-        featured_data_right(i,j) = mean(raw_data{1,k+30}{1,j});
-        featured_data_right(i,j+9) = rms(raw_data{1,k+30}{1,j});
-        featured_data_right(i,j+18) = std(raw_data{1,k+30}{1,j});
-        featured_data_right(i,j+27) = median(raw_data{1,k+30}{1,j});
+        featured_data_right(i,j) = mean(raw_data{1,k+((length(raw_data)/4)*3)}{1,j});
+        featured_data_right(i,j+9) = rms(raw_data{1,k+((length(raw_data)/4)*3)}{1,j});
+        featured_data_right(i,j+18) = std(raw_data{1,k+((length(raw_data)/4)*3)}{1,j});
+        featured_data_right(i,j+27) = median(raw_data{1,k+((length(raw_data)/4)*3)}{1,j});
    end
    k = k+1;
 end
@@ -41,9 +41,33 @@ clearvars i j k ;
 
 
 
+k = 1;
+for i=1:1:(length(suffled)/4)
+   for j=1:1:9
+        featured_data_up(i,j) = mean(suffled{1,k}{1,j});
+        featured_data_up(i,j+9) = rms(suffled{1,k}{1,j});
+        featured_data_up(i,j+18) = std(suffled{1,k}{1,j});
+        featured_data_up(i,j+27) = median(suffled{1,k}{1,j});
+        
+        featured_data_down(i,j) = mean(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+        featured_data_down(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+        featured_data_down(i,j+18) = std(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+        featured_data_down(i,j+27) = median(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+        
+        featured_data_left(i,j) = mean(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+        featured_data_left(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+        featured_data_left(i,j+18) = std(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+        featured_data_left(i,j+27) = median(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+        
+        featured_data_right(i,j) = mean(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+        featured_data_right(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+        featured_data_right(i,j+18) = std(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+        featured_data_right(i,j+27) = median(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+   end
+   k = k+1;
+end
 
-
-
+clearvars i j k ;
 
 
 

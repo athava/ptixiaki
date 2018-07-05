@@ -1,29 +1,34 @@
 % first
+%  p = randperm(35,28);
+featured_data_down = featured_data_down(randperm(size(featured_data_down,1)),:);
+featured_data_left = featured_data_left(randperm(size(featured_data_left,1)),:);
+featured_data_right = featured_data_right(randperm(size(featured_data_right,1)),:);
+featured_data_up = featured_data_up(randperm(size(featured_data_up,1)),:);
+
+
 
 %TRAIN
-for i=1:1:7
+for i=1:1:28
     for j=1:1:36
         trainset(i,j) = featured_data_up(i,j);
-        trainset(i+7,j) = featured_data_down(i,j);
-        trainset(i+14,j) = featured_data_left(i,j);
-        trainset(i+21,j) = featured_data_right(i,j);
+        trainset(i+28,j) = featured_data_down(i,j);
+        trainset(i+56,j) = featured_data_left(i,j);
+        trainset(i+84,j) = featured_data_right(i,j);
     end
 end
 
 clearvars i j
 
- [tr_idx,C_train_set] = kmeans(trainset,4, 'Replicates',45, 'Distance','cityblock');
+[tr_idx,C_train_set] = kmeans(trainset,4, 'Replicates',45, 'Distance','cityblock');
 
 eval_train = evalclusters(trainset,tr_idx,'silhouette','Distance','cityblock');
-
-
  
-train_labels = ['up' {C_train_set(1,:)}; 'down' {C_train_set(2,:)}; 'left' {C_train_set(3,:)}; 'right' {C_train_set(4,:)}];
+train_labels = ['la' {C_train_set(1,:)}; 'la' {C_train_set(2,:)}; 'la' {C_train_set(3,:)}; 'la' {C_train_set(4,:)}];
 
 %label up cluster
 %se poio arithmo sigkentronontai ta perisotera apo thn up kinisi 
 l1=0; l2=0; l3=0; l4=0;
-for i=1:1:7 
+for i=1:1:28
     if(tr_idx(i,1) == 1)
         l1=l1+1;
     elseif (tr_idx(i,1) == 2)
@@ -52,7 +57,7 @@ end
 
 %label down cluster
 l1=0; l2=0; l3=0; l4=0;
-for i=8:1:14 
+for i=29:1:56 
     if(tr_idx(i,1) == 1)
         l1=l1+1;
     elseif (tr_idx(i,1) == 2)
@@ -80,7 +85,7 @@ end
 
 %label left cluster
 l1=0; l2=0; l3=0; l4=0;
-for i=15:1:21 
+for i=57:1:84 
     if(tr_idx(i,1) == 1)
         l1=l1+1;
     elseif (tr_idx(i,1) == 2)
@@ -108,7 +113,7 @@ end
 
 %label left cluster
 l1=0; l2=0; l3=0; l4=0;
-for i=22:1:28
+for i=85:1:112
     if(tr_idx(i,1) == 1)
         l1=l1+1;
     elseif (tr_idx(i,1) == 2)
@@ -139,18 +144,18 @@ end
  %TEST
  
  
- for i=1:1:3
+ for i=1:1:7
     for j=1:1:36
-        testset(i,j) = featured_data_up(i+7,j);
-        testset(i+3,j) = featured_data_down(i+7,j);
-        testset(i+6,j) = featured_data_left(i+7,j);
-        testset(i+9,j) = featured_data_right(i+7,j);
+        testset(i,j) = featured_data_up(i+28,j);
+        testset(i+7,j) = featured_data_down(i+28,j);
+        testset(i+14,j) = featured_data_left(i+28,j);
+        testset(i+21,j) = featured_data_right(i+28,j);
     end
 end
 
 clearvars i j
 
-for i=1:1:12
+for i=1:1:size(testset,1)
     for j=1:1:4
         temp = [testset(i,:); train_labels{j,2}];
         distances(i,j)=  pdist(temp,'cityblock');
@@ -158,7 +163,7 @@ for i=1:1:12
 end
 clearvars i j
 
-for i= 1:1:12
+for i= 1:1:size(testset,1)
     mymin = distances(i,1);
     thesi = 1;
   for j=2:1:4
@@ -173,14 +178,14 @@ end
 
 right_clust=0;
 wrong_clust=0;
-for i= 1:1:12
-   if(miins_position(i,1) == 1 && i<4)
+for i= 1:1:size(testset,1)
+   if(miins_position(i,1) == 1 && i<7)
         right_clust = right_clust+1;
-   elseif(miins_position(i,1) == 2 && i>3 && i<7)
+   elseif(miins_position(i,1) == 2 && i>6 && i<14)
         right_clust = right_clust+1;
-   elseif(miins_position(i,1) == 3 && i>6 && i<10)
+   elseif(miins_position(i,1) == 3 && i>13 && i<21)
         right_clust = right_clust+1;
-   elseif(miins_position(i,1) == 4 && i>9 && i<=12)
+   elseif(miins_position(i,1) == 4 && i>20 && i<=28)
         right_clust = right_clust+1;
    else
        wrong_clust = wrong_clust+1;
