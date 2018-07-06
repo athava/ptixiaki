@@ -1,9 +1,9 @@
 % first
 %  p = randperm(35,28);
-featured_data_down = featured_data_down(randperm(size(featured_data_down,1)),:);
-featured_data_left = featured_data_left(randperm(size(featured_data_left,1)),:);
-featured_data_right = featured_data_right(randperm(size(featured_data_right,1)),:);
-featured_data_up = featured_data_up(randperm(size(featured_data_up,1)),:);
+% featured_data_down = featured_data_down(randperm(size(featured_data_down,1)),:);
+% featured_data_left = featured_data_left(randperm(size(featured_data_left,1)),:);
+% featured_data_right = featured_data_right(randperm(size(featured_data_right,1)),:);
+% featured_data_up = featured_data_up(randperm(size(featured_data_up,1)),:);
 
 
 

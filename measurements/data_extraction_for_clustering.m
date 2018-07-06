@@ -40,42 +40,42 @@ clearvars i j k ;
 % %Indices = crossvalind('Kfold', N, K)
 
 
-
-k = 1;
-for i=1:1:(length(suffled)/4)
-   for j=1:1:9
-        featured_data_up(i,j) = mean(suffled{1,k}{1,j});
-        featured_data_up(i,j+9) = rms(suffled{1,k}{1,j});
-        featured_data_up(i,j+18) = std(suffled{1,k}{1,j});
-        featured_data_up(i,j+27) = median(suffled{1,k}{1,j});
-        
-        featured_data_down(i,j) = mean(suffled{1,k+((length(suffled)/4)*1)}{1,j});
-        featured_data_down(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*1)}{1,j});
-        featured_data_down(i,j+18) = std(suffled{1,k+((length(suffled)/4)*1)}{1,j});
-        featured_data_down(i,j+27) = median(suffled{1,k+((length(suffled)/4)*1)}{1,j});
-        
-        featured_data_left(i,j) = mean(suffled{1,k+((length(suffled)/4)*2)}{1,j});
-        featured_data_left(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*2)}{1,j});
-        featured_data_left(i,j+18) = std(suffled{1,k+((length(suffled)/4)*2)}{1,j});
-        featured_data_left(i,j+27) = median(suffled{1,k+((length(suffled)/4)*2)}{1,j});
-        
-        featured_data_right(i,j) = mean(suffled{1,k+((length(suffled)/4)*3)}{1,j});
-        featured_data_right(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*3)}{1,j});
-        featured_data_right(i,j+18) = std(suffled{1,k+((length(suffled)/4)*3)}{1,j});
-        featured_data_right(i,j+27) = median(suffled{1,k+((length(suffled)/4)*3)}{1,j});
-   end
-   k = k+1;
-end
-
-clearvars i j k ;
-
-
-
-
-
-
-
-
+%% suffled
+% k = 1;
+% for i=1:1:(length(suffled)/4)
+%    for j=1:1:9
+%         featured_data_up(i,j) = mean(suffled{1,k}{1,j});
+%         featured_data_up(i,j+9) = rms(suffled{1,k}{1,j});
+%         featured_data_up(i,j+18) = std(suffled{1,k}{1,j});
+%         featured_data_up(i,j+27) = median(suffled{1,k}{1,j});
+%         
+%         featured_data_down(i,j) = mean(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+%         featured_data_down(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+%         featured_data_down(i,j+18) = std(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+%         featured_data_down(i,j+27) = median(suffled{1,k+((length(suffled)/4)*1)}{1,j});
+%         
+%         featured_data_left(i,j) = mean(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+%         featured_data_left(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+%         featured_data_left(i,j+18) = std(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+%         featured_data_left(i,j+27) = median(suffled{1,k+((length(suffled)/4)*2)}{1,j});
+%         
+%         featured_data_right(i,j) = mean(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+%         featured_data_right(i,j+9) = rms(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+%         featured_data_right(i,j+18) = std(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+%         featured_data_right(i,j+27) = median(suffled{1,k+((length(suffled)/4)*3)}{1,j});
+%    end
+%    k = k+1;
+% end
+% 
+% clearvars i j k ;
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
 
 
 
